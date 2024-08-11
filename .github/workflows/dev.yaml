@@ -59,7 +59,7 @@ jobs:
           context: .
           file: docker/Dockerfile-backend
           push: true
-          tags: ${{ steps.login-acr.outputs.registry }}/jiro-jlzhang/common:graphrag-backend
+          tags: registry.cn-hangzhou.aliyuncs.com/jiro-jlzhang/common:graphrag-backend
   build-frontend:
     needs: [lint-check]
     runs-on: ubuntu-latest
@@ -80,4 +80,4 @@ jobs:
           context: .
           file: docker/Dockerfile-frontend
           push: true
-          tags: ${{ steps.login-acr.outputs.registry }}/jiro-jlzhang/common:graphrag-frontend
+          tags: registry.cn-hangzhou.aliyuncs.com/jiro-jlzhang/common:graphrag-frontend
