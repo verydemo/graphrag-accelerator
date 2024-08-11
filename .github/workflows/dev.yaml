@@ -46,12 +46,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Login to Aliyun ACR
+        id: login-acr
+        uses: aliyun/acr-login@v1
+        with:
+          acr-id: ${{ secrets.ALIYUN_ACR_ID }}
+          access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+          access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
       - name: Build docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           file: docker/Dockerfile-backend
           push: true
+          tags: ${{ steps.login-acr.outputs.registry }}/jiro-jlzhang/common:graphrag-backend
   build-frontend:
     needs: [lint-check]
     runs-on: ubuntu-latest
@@ -59,9 +67,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Login to Aliyun ACR
+        id: login-acr
+        uses: aliyun/acr-login@v1
+        with:
+          acr-id: ${{ secrets.ALIYUN_ACR_ID }}
+          access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+          access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
       - name: Build docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           file: docker/Dockerfile-frontend
           push: true
+          tags: ${{ steps.login-acr.outputs.registry }}/jiro-jlzhang/common:graphrag-frontend
