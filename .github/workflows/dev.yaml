@@ -50,9 +50,9 @@ jobs:
         id: login-acr
         uses: aliyun/acr-login@v1
         with:
-          acr-id: ${{ secrets.ALIYUN_ACR_ID }}
-          access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
-          access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+          login-server: ${{ secrets.ALIYUN_ACR_ID }}
+          username: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+          password: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
       - name: Build docker image
         uses: docker/build-push-action@v2
         with:
@@ -71,9 +71,9 @@ jobs:
         id: login-acr
         uses: aliyun/acr-login@v1
         with:
-          acr-id: ${{ secrets.ALIYUN_ACR_ID }}
-          access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
-          access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+          login-server: ${{ secrets.ALIYUN_ACR_ID }}
+          username: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+          password: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
       - name: Build docker image
         uses: docker/build-push-action@v2
         with:
